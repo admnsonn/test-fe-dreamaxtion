@@ -16,7 +16,8 @@ const description = overview.length <= 200 ? overview : overview.slice(0, 200)
     <div class="w-screen h-screen" :style="{
         backgroundImage: 'url(' + getImage(background) + ')',
         backgroundPosition: 'center center',
-        backgroundAttachment: 'fixed'
+        backgroundAttachment: 'fixed',
+        backgroundSize: 'cover'
     }">
         <div
             class="text-white p-10 flex flex-col justify-center w-full h-full bg-gradient-to-r from-black to to-transparent">
