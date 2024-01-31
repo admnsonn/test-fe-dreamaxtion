@@ -32,9 +32,10 @@ const description = overview.length <= 60 ? overview : overview.slice(0, 60)
                     <Icon icon="material-symbols:star-rounded" color="white" />
                 </p>
             </div>
-        </div>
-        <div>
-            sa
+            <div>
+                <h1 class="text-xl font-semibold my-2 text-white">{{ title }}</h1>
+                <p class="text-neutral-400 text-sm">{{ description }}</p>
+            </div>
         </div>
     </div>
 </template>

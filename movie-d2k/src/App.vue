@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref, defineAsyncComponent } from 'vue';
+import { onBeforeMount, ref, defineAsyncComponent } from 'vue';
 import Navbar from "./components/Navbar.vue"
 import Movielist from "./components/Movielist.vue"
 const film = ref([])
@@ -18,18 +18,24 @@ const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min) + min)
 }
 
-onMounted(async () => {
+onBeforeMount(async () => {
   await getMovies()
-  bannerFilm.value = film.value[getRandomInt (0, film.value.length - 1)]
+  bannerFilm.value = film.value[getRandomInt(0, film.value.length - 1)]
 })
 </script>
 
 <template>
-  <Navbar />
+  <div class="main">
+    <Navbar />
 
-  <AsyncBanner 
-  :banner="bannerFilm"/>
+    <AsyncBanner :banner="bannerFilm" />
 
-  <Movielist 
-  :film="film"/>
+    <Movielist :film="film" />
+  </div>
 </template>
+
+<style scoped>
+.main {
+  background-color: black;
+}
+</style>
