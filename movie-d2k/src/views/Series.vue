@@ -4,14 +4,14 @@ import { ref } from "vue";
 import { Icon } from "@iconify/vue"
 import getImage from "../lib/getImage"
 const router = useRouter()
-const movieId = router.currentRoute.value.params.id
-const movie = ref(null)
+const seriesId = router.currentRoute.value.params.id
+const series = ref(null)
 
-movie.value = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=0b51a1ebc294f6b1df34c2a0c0406362&language=en-US`)
+series.value = await fetch(`https://api.themoviedb.org/3/tv/${seriesId}?api_key=0b51a1ebc294f6b1df34c2a0c0406362&language=en-US`)
     .then(res => res.json())
 
 const {
-    title,
+    original_name,
     overview,
     backdrop_path: background,
     poster_path: poster,
@@ -19,8 +19,8 @@ const {
     vote_average: vote,
     popularity,
     runtime
-} = movie.value
-const movieDuration = Math.round(runtime / 60)
+} = series.value
+const seriesDuration = Math.round(runtime / 60)
 
 </script>
 
@@ -32,7 +32,7 @@ const movieDuration = Math.round(runtime / 60)
             <div class="pt-20 w-full h-full grid grid-cols-2 items-center">
                 <img class="w-[400px] mx-auto rounded-lg" :src="getImage(poster)" />
                 <div>
-                    <h1 class="text-4xl font-semibold text-neutral-300 mb-4">{{ title }}</h1>
+                    <h1 class="text-4xl font-semibold text-neutral-300 mb-4">{{ original_name }}</h1>
                     <p class="text-sm text-neutral-300 w-2/3">{{ overview }}</p>
                     <div class="flex flex-col text-sm gap-2 mt-3">
                         <div class="flex items-center gap-2">
@@ -49,7 +49,7 @@ const movieDuration = Math.round(runtime / 60)
                         </div>
                         <div class="flex items-center gap-2">
                             <Icon icon="ic:twotone-access-time-filled" color="white" />
-                            <span class="text-neutral-300">{{ movieDuration }}h / {{ runtime }} minutes</span>
+                            <span class="text-neutral-300">{{ seriesDuration }}h / {{ runtime }} minutes</span>
                         </div>
                     </div>
                 </div>

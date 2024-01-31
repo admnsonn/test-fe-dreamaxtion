@@ -2,23 +2,23 @@
 import getImage from '../lib/getImage';
 import { Icon } from '@iconify/vue';
 import { RouterLink } from "vue-router"
-const { movie } = defineProps(["movie"])
+const { series } = defineProps(["series"])
 const {
     id,
-    title,
+    original_name,
     overview,
     backdrop_path: background,
     poster_path: poster,
     release_date,
     vote_average: vote,
     original_language: language
-} = movie
-console.log(movie)
+} = series
+console.log(series)
 const description = overview.length <= 60 ? overview : overview.slice(0, 60)
 </script>
 
 <template>
-    <RouterLink :to="`/movie/${id}`">
+    <RouterLink :to="`/series/${id}`">
         <div class="w-full h-full grid grid-rows-[4fr_1fr]">
             <div class="relative group w-full h-full">
                 <img :src="getImage(poster)"
@@ -39,7 +39,7 @@ const description = overview.length <= 60 ? overview : overview.slice(0, 60)
                 </div>
                 <div>
                     <br>
-                    <h1 class="text-xl font-semibold my-2 text-white">{{ title }}</h1>
+                    <h1 class="text-xl font-semibold my-2 text-white">{{ original_name }}</h1>
                     <p class="text-neutral-400 text-sm">{{ description }}</p>
                 </div>
             </div>

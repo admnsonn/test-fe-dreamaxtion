@@ -4,11 +4,16 @@ import Navbar from "./components/Navbar.vue"
 </script>
 
 <template>
-  <Navbar />
-  <Suspense>
-    <RouterView />
-  </Suspense>
+  <div class="main">
+    <Navbar />
+    <Suspense>
+      <RouterView />
+    </Suspense>
+  </div>
 </template>
 
-<style scoped>
+<style>
+.main{
+  background-color: black;
+}
 </style>
