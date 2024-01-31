@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted, ref, defineAsyncComponent } from 'vue';
+import Navbar from "./components/Navbar.vue"
 
 const film = ref(null)
 const bannerFilm = ref(null)
@@ -24,6 +25,8 @@ onMounted(async () => {
 </script>
 
 <template>
+  <Navbar />
+
   <AsyncBanner 
   :banner="bannerFilm"/>
 </template>
