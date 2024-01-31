@@ -42,6 +42,14 @@ const description = overview.length <= 60 ? overview : overview.slice(0, 60)
                     <h1 class="text-xl font-semibold my-2 text-white">{{ original_name }}</h1>
                     <p class="text-neutral-400 text-sm">{{ description }}</p>
                 </div>
+                <div class="absolute top-4 left-4 flex items-center gap-2">
+                    <button @click="addToWatchlist" class="flex items-center gap-1 justify-center text-white bg-yellow-500 px-2 py-1 rounded-md">
+                        <Icon icon="mdi:playlist-plus" class="text-white" />
+                    </button>
+                    <button @click="deleteFromWatchlist" class="flex items-center gap-1 justify-center text-white bg-red-500 px-2 py-1 rounded-md">
+                        <Icon icon="mdi:playlist-remove" class="text-white" />
+                    </button>
+                </div>
             </div>
         </div>
     </RouterLink>
