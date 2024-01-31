@@ -11,6 +11,7 @@ import { RouterLink } from "vue-router";
         </RouterLink>
         <ul class="flex items-center gap-4 font-semibold">
             <RouterLink tag="li" class="col" class-active="active" to="/" exact>Dashboard</RouterLink>
+            <!-- <RouterLink tag="li" class="col" class-active="active" to="/watchlist" exact>Watchlist</RouterLink> -->
         </ul>
     </nav>
 </template>

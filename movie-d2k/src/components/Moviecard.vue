@@ -27,6 +27,7 @@ const addToWatchlist = () => {
         timer: 1500,
     });
     console.log(`Added ${title} to the watchlist`);
+    // $emit('addToWatchlist', movie);
 }
 
 const openDeletePopup = () => {
