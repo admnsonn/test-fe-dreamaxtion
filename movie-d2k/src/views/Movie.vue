@@ -20,7 +20,11 @@ const {
     popularity,
     runtime
 } = movie.value
-const movieDuration = Math.round(runtime / 60)
+const movieDuration = Math.round(runtime / 60);
+
+const goBack = () => {
+    router.go(-1);
+};
 
 </script>
 
@@ -52,6 +56,9 @@ const movieDuration = Math.round(runtime / 60)
                             <span class="text-neutral-300">{{ movieDuration }}h / {{ runtime }} minutes</span>
                         </div>
                     </div>
+                    <button @click="goBack" class="mt-4 px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600">
+                        Back
+                    </button>
                 </div>
             </div>
         </div>

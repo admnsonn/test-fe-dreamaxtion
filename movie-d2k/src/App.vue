@@ -12,7 +12,7 @@ import Navbar from "./components/Navbar.vue"
   </div>
 </template>
 
-<style scoped>
+<style>
 .main{
   background-color: black;
 }

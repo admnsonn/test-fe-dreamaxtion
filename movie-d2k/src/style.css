@@ -1,9 +1,7 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwindities;
 
 html {
-    @apply text-white;
-    @apply bg-neutral-900;
-    @apply overflow-x-hidden;
+    @apply text-white bg-neutral-900 overflow-x-hidden;
 }

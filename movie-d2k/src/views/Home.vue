@@ -9,7 +9,7 @@
             <br>
             <div class="flex translate-x-[5%] items-center">
                 <input v-model="searchQuery" @input="search" id="searchInput" type="text"
-                    class="focus:outline-none w-full border h-12 shadow p-4 rounded-full"
+                    class="focus:outline-none w-full border h-12 shadow p-4 rounded-full w-full"
                     placeholder="Search Movie/Tv Series" />
             </div>
             <Movielist v-if="searchResults.movies" :film="searchResults.movies" class="mt-1" />
@@ -19,12 +19,6 @@
         <Movielist :film="film" />
         <h2 class="text-white translate-x-[5%] justify-center text-3xl font-bold">Popular TV Series</h2>
         <Serieslist :serial="serial" />
-
-        <div class="watchlist-section">
-            <h2 class="text-white translate-x-[5%] justify-center text-3xl font-bold">Watchlist</h2>
-            <Movielist v-if="watchlist.length > 0" :film="watchlist" />
-            <p v-else class="text-white translate-x-[5%] justify-center">Your watchlist is empty.</p>
-        </div>
     </div>
 </template>
 
@@ -94,18 +88,6 @@ onBeforeMount(async () => {
     await getTVSeries()
     serial.value[getRandomInt(0, serial.value.length - 1)]
 });
-
-const watchlist = ref([]);
-
-const addToWatchlist = (item) => {
-    if (!watchlist.value.find((el) => el.id === item.id)) {
-        watchlist.value.push(item);
-    }
-};
-
-const removeFromWatchlist = (item) => {
-    watchlist.value = watchlist.value.filter((el) => el.id !== item.id);
-};
 </script>
 
 <style scope>
