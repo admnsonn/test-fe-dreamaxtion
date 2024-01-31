@@ -20,7 +20,11 @@ const {
     popularity,
     runtime
 } = series.value
-const seriesDuration = Math.round(runtime / 60)
+const seriesDuration = Math.round(runtime / 60);
+
+const goBack = () => {
+    router.go(-1);
+};
 
 </script>
 
@@ -52,6 +56,9 @@ const seriesDuration = Math.round(runtime / 60)
                             <span class="text-neutral-300">{{ seriesDuration }}h / {{ runtime }} minutes</span>
                         </div>
                     </div>
+                    <button @click="goBack" class="mt-4 px-4 py-2 rounded-md bg-blue-900 text-white hover:bg-blue-900">
+                        Back
+                    </button>
                 </div>
             </div>
         </div>

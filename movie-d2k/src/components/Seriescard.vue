@@ -3,6 +3,7 @@ import getImage from '../lib/getImage';
 import { Icon } from '@iconify/vue';
 import { RouterLink } from "vue-router"
 const { series } = defineProps(["series"])
+import Swal from 'sweetalert2';
 const {
     id,
     original_name,
@@ -13,6 +14,38 @@ const {
     vote_average: vote,
     original_language: language
 } = series
+
+const addToWatchlist = () => {
+    Swal.fire({
+        title: `Ditambahkan ke Watchlist`,
+        icon: 'success',
+        showCancelButton: false,
+        showConfirmButton: false,
+        timer: 1500,
+    });
+    console.log(`Added ${original_name} to the watchlist`);
+}
+
+const openDeletePopup = () => {
+    Swal.fire({
+        title: `Apakah kamu ingin menghapus ${original_name} dari watchlist?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Confirm',
+        cancelButtonText: 'Cancel',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            confirmDelete();
+        }
+    });
+}
+
+const confirmDelete = () => {
+    console.log(`Deleted ${original_name} from the watchlist`);
+    showDeletePopup.value = false;
+}
 console.log(series)
 const description = overview.length <= 60 ? overview : overview.slice(0, 60)
 </script>
@@ -43,14 +76,23 @@ const description = overview.length <= 60 ? overview : overview.slice(0, 60)
                     <p class="text-neutral-400 text-sm">{{ description }}</p>
                 </div>
                 <div class="absolute top-4 left-4 flex items-center gap-2">
-                    <button @click="addToWatchlist" class="flex items-center gap-1 justify-center text-white bg-yellow-500 px-2 py-1 rounded-md">
+                    <button @click="addToWatchlist"
+                        class="flex items-center gap-1 justify-center text-white bg-yellow-500 px-2 py-1 rounded-md">
                         <Icon icon="mdi:playlist-plus" class="text-white" />
                     </button>
-                    <button @click="deleteFromWatchlist" class="flex items-center gap-1 justify-center text-white bg-red-500 px-2 py-1 rounded-md">
+                    <button @click="openDeletePopup"
+                        class="flex items-center gap-1 justify-center text-white bg-red-500 px-2 py-1 rounded-md">
                         <Icon icon="mdi:playlist-remove" class="text-white" />
                     </button>
                 </div>
             </div>
         </div>
     </RouterLink>
+    <div v-if="showDeletePopup" class="popup-container">
+        <div class="popup-content">
+            <p>Are you sure you want to remove {{ original_name }} from the watchlist?</p>
+            <button @click="confirmDelete" class="bg-red-500 text-white px-2 py-1 rounded-md">Confirm</button>
+            <button @click="showDeletePopup = false" class="bg-gray-500 text-white px-2 py-1 rounded-md">Cancel</button>
+        </div>
+    </div>
 </template>

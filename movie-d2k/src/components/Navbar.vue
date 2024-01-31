@@ -10,7 +10,7 @@ import { RouterLink } from "vue-router";
             <span>Rumah Ensik</span>
         </RouterLink>
         <ul class="flex items-center gap-4 font-semibold">
-            <li>Dashboard</li>
+            <RouterLink tag="li" class="col" class-active="active" to="/" exact>Dashboard</RouterLink>
         </ul>
     </nav>
 </template>
