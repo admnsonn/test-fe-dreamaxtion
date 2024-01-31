@@ -1,47 +1,29 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import { onMounted, ref, defineAsyncComponent } from 'vue';
+
+const film = ref(null)
+const bannerFilm = ref(null)
+const AsyncBanner = defineAsyncComponent(() => {
+  return import("./components/Banner.vue")
+})
+
+const getMovies = async () => {
+  film.value = await fetch("https://api.themoviedb.org/3/movie/popular?api_key=0b51a1ebc294f6b1df34c2a0c0406362")
+    .then(res => res.json())
+    .then(res => res.results)
+}
+
+const getRandomInt = (min, max) => {
+  return Math.floor(Math.random() * (max - min) + min)
+}
+
+onMounted(async () => {
+  await getMovies()
+  bannerFilm.value = film.value[getRandomInt (0, film.value.length - 1)]
+})
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <AsyncBanner 
+  :banner="bannerFilm"/>
 </template>
-
-<style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>
