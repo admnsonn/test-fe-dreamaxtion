@@ -56,7 +56,7 @@ const goBack = () => {
                             <span class="text-neutral-300">{{ movieDuration }}h / {{ runtime }} minutes</span>
                         </div>
                     </div>
-                    <button @click="goBack" class="mt-4 px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600">
+                    <button @click="goBack" class="mt-4 px-4 py-2 rounded-md bg-blue-900 text-white hover:bg-blue-900">
                         Back
                     </button>
                 </div>
